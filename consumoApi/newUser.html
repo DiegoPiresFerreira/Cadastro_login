@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+          <a class="btn btn-outline-success me-2" type="button" href="./newUser.html">Cadastro</a>
+          <a class="btn btn-sm btn-outline-secondary" type="button" href="./login.html">Usuarios</a>
+        </form>
+      </nav>
+
+   <div class="container cadastro w-50 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Cadastro de usuario</h2>
+        </div>
+        <div class="card-body">
+            <form class="form-floating p-2">
+                <div class="form-floating mb-3 ">
+                    <input type="text" class="form-control" id="newName" placeholder="name@example.com">
+                    <label for="floatingInput">Nome</label>
+                  </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control"  id="newEmail" placeholder="name@example.com">
+                    <label for="floatingInput">Email</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control"  id="newPassword" placeholder="Password">
+                    <label for="floatingPassword">Senha</label>
+                  </div>
+                  <button type="button" href="./teste.html" class="btn btn-primary mt-3" onclick="cadastrarUser()">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+   </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const axiosConfig ={
+    headers:{
+        Authorization: "Bearer " + localStorage.getItem("token")
+    }
+}
+
+
+
+function cadastrarUser (){
+const name = document.getElementById('newName')
+const email = document.getElementById('newEmail')
+const password = document.getElementById('newPassword')
+const user = {name:name.value,email:email.value,password:password.value}
+
+if(user.name == ''){
+    window.alert('Digite um nome!')
+}else if(user.email == ''){
+    window.alert('Digite um email')
+}else if(user.password == ''){
+    window.alert('Digite um password')
+}
+
+
+
+axios.post("http://localhost:4000/user",user).then(user=>{
+    location.reload()
+}).catch(err=>{
+
+})
+
+}
+
+</script>
+</html>

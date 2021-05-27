@@ -1,0 +1,19 @@
+h2{
+    text-align:center;
+}
+.login{
+    display: inline-block;
+    float: right;
+    height: 356px;
+}
+.n1{
+    display: inline-block;
+}
+.cadastro{
+   margin-left:25%;
+}
+#user{
+    display: inline-block;
+    margin-left: 1000px;
+    color: red;
+}
